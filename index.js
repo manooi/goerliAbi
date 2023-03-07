@@ -10,7 +10,7 @@ app.use((req, res, next) => {
 });
 app.use(express.json());
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "*",
 }));
 // 0x7c87561b129f46998fc9Afb53F98b7fdaB68696f test
 
@@ -82,7 +82,6 @@ app.post('/', async (req, res) => {
     console.log(address);
     
     if (utils.isAddress(address)) {
-//         return res.status(200).json({'helloworld': 55555});
         const data = await scrapeContract(address);
         console.log(data);
         return res.status(200).json(data);
@@ -93,8 +92,8 @@ app.post('/', async (req, res) => {
 })
 
 
-app.listen(8080, () => {
-    console.log('server is running at http://localhost:8080');
+app.listen(3000, () => {
+    console.log('server is running at http://localhost:3000');
 });
 
 module.exports = app;
