@@ -20,6 +20,12 @@ app.use(cors({
     0x7Ef17Da8398C57724b866a75d4c3D02425037d37
 */
 
+const sleep = (time) => new Promise((resolve)=> {
+    setTimeout(() => {
+        resolve(); 
+    }, time);
+});
+
 const scrapeContract = async (address) =>{
     const etherContractUrl = `https://goerli.etherscan.io/address/${address}#code`
     const mainTage = 'main#content';
@@ -33,6 +39,7 @@ const scrapeContract = async (address) =>{
     try{
         let data = "";
         while (data.includes('moment') || data.length == 0) {
+            await sleep(2000);
             let result = await axios.get(etherContractUrl);
             if (result && result.status == 200)  {
                 data = result.data;
