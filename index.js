@@ -40,8 +40,14 @@ const scrapeContract = async (address) =>{
         let data = "";
         while (data.includes('moment') || data.length == 0) {
             await sleep(2000);
-            let result = await axios.get(etherContractUrl);
-            if (result && result.status == 200)  {
+            let result = await axios.request({
+                method: "GET",
+                url: etherContractUrl, 
+                headers: {
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+                }
+            });
+            if (result && result.status == 200) {
                 data = result.data;
             }
         }
