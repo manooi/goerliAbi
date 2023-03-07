@@ -76,6 +76,7 @@ app.get('/', (req, res) => {
 
 app.post('/', async (req, res) => {
     const address = req.body.address;
+    console.log("req", req);
 
     // check it is address of contract
     console.log(address);
