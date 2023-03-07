@@ -5,7 +5,9 @@ const cors = require('cors');
 const { utils } = require('ethers');
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:5173",
+}));
 // 0x7c87561b129f46998fc9Afb53F98b7fdaB68696f test
 
 
