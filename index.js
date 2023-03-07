@@ -31,9 +31,13 @@ const scrapeContract = async (address) =>{
     };
 
     try{
-        const { data } = await axios.get(etherContractUrl);
-        const $ = cheerio.load(data);
-        const item = $(mainTage);
+        let data = "";
+        while (data.includes('moment') || data.length == 0) {
+            let result = await axios.get(etherContractUrl);
+            if (result && result.status == 200)  {
+                data = result.data;
+            }
+        }
 
         if (
             $(item).find(bytecodeTage).length
