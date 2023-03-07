@@ -82,10 +82,10 @@ app.post('/', async (req, res) => {
     console.log(address);
     
     if (utils.isAddress(address)) {
-        return res.status(200).json({'helloworld': 55555});
-        // const data = await scrapeContract(address);
-        // console.log(data);
-        // return res.status(200).json(data);
+//         return res.status(200).json({'helloworld': 55555});
+        const data = await scrapeContract(address);
+        console.log(data);
+        return res.status(200).json(data);
     }
 
     return res.status(404).json('The address is invalid')
